@@ -1,0 +1,3 @@
+$id = Get-MailboxStatistics -Server ServerName | where{$_.DisconnectDate -ne $NULL} | select -ExpandProperty MailboxGuid
+
+foreach($i in $id){Remove-Mailbox -Database DataBaseName -StoreMailboxIdentity $i}
