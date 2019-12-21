@@ -27,7 +27,7 @@ Write-Host "wait"
 
 $ip = Test-Connection -ComputerName $name -Count 1 | select -ExpandProperty IPV4Address | select -ExpandProperty IPAddressToString
 #create exclusion range in dhcp
-Invoke-Command -ComputerName "rptdhcp" -ScriptBlock {param($ip) Add-DhcpServerv4ExclusionRange -ScopeId IP -StartRange $ip -EndRange $ip} -ArgumentList $ip
+Invoke-Command -ComputerName "DHCPServer" -ScriptBlock {param($ip) Add-DhcpServerv4ExclusionRange -ScopeId IP -StartRange $ip -EndRange $ip} -ArgumentList $ip
 
 #chnge the ip from dynamic to static
 Invoke-Command -ComputerName $name -ScriptBlock{
